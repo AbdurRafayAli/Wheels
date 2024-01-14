@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://main" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://main" xmlns:intf="http://main" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="sellCar">
+    <complexType>
+     <sequence>
+      <element name="make" type="xsd:string"/>
+      <element name="model" type="xsd:string"/>
+      <element name="year" type="xsd:string"/>
+      <element name="mileage" type="xsd:string"/>
+      <element name="price" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sellCarResponse">
+    <complexType>
+     <sequence>
+      <element name="sellCarReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sellCarResponse">
+
+      <wsdl:part element="impl:sellCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sellCarRequest">
+
+      <wsdl:part element="impl:sellCar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Sell">
+
+      <wsdl:operation name="sellCar">
+
+         <wsdl:input message="impl:sellCarRequest" name="sellCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sellCarResponse" name="sellCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SellSoapBinding" type="impl:Sell">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sellCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sellCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sellCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SellService">
+
+      <wsdl:port binding="impl:SellSoapBinding" name="Sell">
+
+         <wsdlsoap:address location="http://localhost:8080/Wheels-project/services/Sell"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
