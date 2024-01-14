@@ -1,0 +1,549 @@
+html, body {
+  width: 100%;
+  height:100%;
+  	overflow-x: hidden;
+}
+
+body {
+    background: linear-gradient(-45deg, red, Lightblue, Lightgreen, yellow);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#Start{
+	width: 100%;
+	justify-content: center;
+}
+
+.nine{
+	margin-top: 15%;
+	text-align:center;
+	font-size: 30px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:400;
+}
+
+.nine h1 span {
+  	margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.nine h1 span:after,.nine h1 span:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    height: 5px;
+  	background-color:black;
+}
+
+#ShowCars,#SearchedCars{
+	justify-content: space-around;	
+	display: grid;
+	grid-template-columns: repeat(3, 200px);
+	gap: 20px; /* Adjust the gap as needed */
+}
+
+.Car-Div h2{
+	font-size: 25px;
+	
+}
+
+.Car-Div h3{
+	font-size: 20px;
+}
+
+.Car-Div label{
+	font-size: 15px;
+	text-transform: none;
+}
+
+.Car-Div{
+	margin-top:10px;
+	margin-bottom:10px;
+	text-transform:uppercase;
+	padding-left:15px;
+	width: 100%;
+	height: 250px;
+	justify-content: center;
+	align-items: center;
+	background-color: white; /* Optional background color */
+	border: 3px solid black; /* Optional border */
+	border-radius: 8px;
+}
+
+.Car-Div:hover{
+	box-shadow: 4px 4px 0 black;
+	transform: translate(-8px,-4px);	
+}
+
+.Car-Div button{
+	margin-top: 20px;
+}
+
+.b1{	
+	display: inline-block;
+	outline: 0;
+	cursor: pointer;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+	background: #FFD814;
+	border: 1px solid #FCD200;
+	font-size: 13px;
+	height: 31px;
+	padding: 0 11px;
+	text-align: center;
+	width: 20%;
+	min-width: 100px;
+	font-weight: 500;
+	color: #0F1111;       
+	text-transform: uppercase;     
+}
+.b1:hover{
+	background: #F7CA00;
+	border-color: #F2C200;
+	box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+}
+
+.b2{
+	margin-left: 10px;
+	display: inline-block;
+	outline: 0;
+	text-align: center;
+	cursor: pointer;
+	height: 31px;
+	padding: 0 13px;
+	color: #fff;
+	vertical-align: top;
+	border-radius: 8px;
+	border: 1px solid transparent;
+	transition: all .3s ease;
+	background: #cc4d29;
+	border-color: #cc4d29;
+	font-weight: 600;
+	text-transform: uppercase;
+	line-height: 16px;
+	font-size: 11px;
+}
+.b2:hover {
+    background: #e4461b;
+    border-color: #e4461b;
+}
+
+.LgnBtn{
+	margin-left:500px;
+}
+.LgnBtn,.SignBtn{
+	margin-right:60px;
+	outline: 0;
+	grid-gap: 500px;
+	align-items: center;
+	background: 0 0;
+	border: 1px solid #000;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	gap: 50px;
+	line-height: 1.5;
+	overflow: hidden;
+	padding: 12px 16px;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	transition: all .14s ease-out;
+	white-space: nowrap;	
+	width: 10vw;
+}
+
+.LgnBtn:hover,.SignBtn:hover{
+	    box-shadow: 4px 4px 0 #000;
+	    transform: translate(-4px,-4px);
+}
+.LgnBtn:focus-visible,.SignBtn:focus-visible{
+	    outline-offset: 1px;
+}
+
+#Login h1,
+#Signup h1
+{
+	text-align:center;
+	font-size: 60px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+#Login h1 span, #Signup h1 span{
+  	margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+#Login h1 span:after,#Login h1 span:before,
+#Signup h1 span:after,#Signup h1 span:before
+ {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  	background-color:black;
+}
+
+#Login,#Signup{
+	height: 250px;
+	padding: 5px 0 30px 0;
+	text-align: center;
+}
+
+#Login label,#Signup label
+{
+	text-align:center; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+	display: block;
+	margin-bottom: 8px;
+	font-size: 20px;
+}
+#Login input,#Signup input{	
+	box-shadow: inset #abacaf 0 0 0 2px;
+	border: 0 black;
+	background: transparent;
+	appearance: none;
+	width: 20%;
+	position: relative;
+	border-radius: 3px;
+	padding: 9px 12px;
+	line-height: 1.4;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	font-weight: 400;
+	height: 40px;
+	transition: all .2s ease;
+}
+#Login input:hover,#Signup input:hover{
+	box-shadow: 0 0 0 0 black inset, black 0 0 0 2px;
+}
+#Login input:focus,#Signup input:focus{
+	background: transparent;
+	outline: 0 black;
+	box-shadow: 0 0 0 0 black inset, black 0 0 0 3px;
+}
+
+.SubBtn{
+	margin-top:15px;
+	outline: 0;
+	grid-gap: 500px;
+	align-items: center;
+	background: 0 0;
+	border: 1px solid #000;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	gap: 50px;
+	line-height: 1.5;
+	overflow: hidden;
+	padding: 12px 16px;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	transition: all .14s ease-out;
+	white-space: nowrap;	
+}
+
+.SubBtn:hover{
+	    box-shadow: 4px 4px 0 #000;
+	    transform: translate(-4px,-4px);
+}
+.SubBtn:focus-visble{
+	    outline-offset: 1px;
+}
+
+
+#HomePage h1{
+	text-align:center;
+	font-size: 60px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+
+#HomePage h2{
+	text-align:center;
+	font-size: 30px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+
+#HomePage h1 span{
+	 margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+#HomePage h1 span:after,#HomePage h1 span:before
+ {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  	background-color:black;
+}
+
+.Hbtn1{
+	margin-left:500px;
+}
+.Hbtn1, .Hbtn2{
+	width: 10vw;
+	margin-right: 60px;
+	margin-top:15px;
+	margin-bottom:15px;
+	outline: 0;
+	grid-gap: 500px;
+	align-items: center;
+	background: 0 0;
+	border: 1px solid #000;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	gap: 50px;
+	line-height: 1.5;
+	overflow: hidden;
+	padding: 12px 16px;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	transition: all .14s ease-out;
+	white-space: nowrap;	
+}
+
+.Hbtn1:hover, .Hbtn2:hover{
+	    box-shadow: 4px 4px 0 #000;
+	    transform: translate(-4px,-4px);
+}
+.Hbtn1:focus-visble, .Hbtn2:focus-visble{
+	    outline-offset: 1px;
+}
+
+#Search{
+	height: 350px;
+	padding: 5px 0 30px 0;
+	text-align: center;
+}
+
+#Search h1{
+	text-align:center;
+	font-size: 60px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+#Search h1 span{
+	 margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;	
+}
+#Search h1 span:after,#Search h1 span:before
+ {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  	background-color:black;
+}
+
+.SearchBtn{
+	width: 10vw;
+	margin-right: 60px;
+	margin-top:15px;
+	margin-bottom:15px;
+	outline: 0;
+	grid-gap: 500px;
+	align-items: center;
+	background: 0 0;
+	border: 1px solid #000;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	gap: 50px;
+	line-height: 1.5;
+	overflow: hidden;
+	padding: 12px 16px;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	transition: all .14s ease-out;
+	white-space: nowrap;	
+}
+
+.SearchBtn:hover{
+	    box-shadow: 4px 4px 0 #000;
+	    transform: translate(-4px,-4px);
+}
+.SearchBtn:focus-visble{
+	    outline-offset: 1px;
+}
+
+#Search h2{
+	text-align:center;
+	font-size: 30px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+
+#Search label,#Signup label
+{
+	text-align:center; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+	display: block;
+	margin-bottom: 8px;
+	font-size: 20px;
+}
+
+#Search input{	
+	box-shadow: inset #abacaf 0 0 0 2px;
+	border: 0;
+	background: rgba(0, 0, 0, 0);
+	appearance: none;
+	width: 20%;
+	position: relative;
+	margin-bottom: 20%;
+	margin-right: 10px;
+	border-radius: 3px;
+	padding: 9px 12px;
+	line-height: 1.4;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	font-weight: 400;
+	height: 40px;
+	transition: all .2s ease;
+}
+
+#Search input:hover{
+	box-shadow: 0 0 0 0 black inset, black 0 0 0 2px;
+}
+
+#Search input:focus{
+	background: #fff;
+	outline: 0 ;
+	box-shadow: 0 0 0 0 black inset, black 0 0 0 3px;
+}
+
+#Sell{
+	height: auto();
+	padding: 5px 0 30px 0;
+	text-align: center;
+}
+
+#Sell h1{
+	text-align:center;
+	font-size: 60px; 
+	text-transform:uppercase; 
+	color:#222; 
+	letter-spacing:1px;
+	font-family:"Playfair Display", serif; 
+	font-weight:600;
+}
+
+#Sell h1 span{
+	margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+	
+}
+
+#Sell h1 span:after, #Sell h1 span:before{
+	content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  	background-color:black;
+}
+
+#EndDiv{
+	height: 100%;
+	padding: 5px 0 30px 0;
+	text-align: center;
+}
+
+#EndDiv h1 span{
+	margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+	
+}
+
+#EndDiv h1 span:after, #EndDiv h1 span:before{
+	content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  	background-color:black;
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Wheels</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="Start">	
+<div class="nine">
+  	<h1>Wheels<span>BUY / SELL / RENT</span></h1>
+	</div>
+	<button class="LgnBtn" type="button" onclick="Open()">Login</button>
+	<button class="SignBtn" type="button" onclick="Open2()">SignUp</button>
+</div>
+
+<div id="Signup" hidden="hidden">
+<form>
+	<div>
+  	<h1>Wheels<span>BUY / SELL / RENT</span></h1>
+	</div>
+	<label>Name: </label>
+	<input id="name" type="text">
+	<br/>
+	<br/>
+	<label>Email: </label>
+	<input id="Email" type="email">
+	<br/>
+	<br/>
+	<label>Password: </label>
+	<input id="Password" type="password">
+	<br/>
+	<br/>
+	<button class="SubBtn" type="button" onclick="SignUp()">Submit</button>
+</form>
+</div>
+
+
+
+<div id="HomePage" hidden="hidden">
+	<div>
+  	<h1>Wheels<span>BUY / SELL / RENT</span></h1>
+	</div>
+	<h2> Buy, Sell or Rent a Car of your choice</h2>
+
+	<button class="Hbtn1" onclick="Open3()">Search</button>
+	<button class="Hbtn2" onclick="Open4()">Sell</button>	
+</div>
+
+<div id="Search" hidden="hidden">
+	<div>
+  	<h1>Wheels<span>BUY / SELL / RENT</span></h1>
+	</div>
+	<h2>Search Car</h2>
+	<label >Make: </label>
+	<input id="Make" type="text">
+	<button class="SearchBtn" type="button" onclick="SearchCar()">Search</button>
+</div>
+
+<div id="SearchedCars" hidden="hidden"></div>
+<div id="ShowCars" hidden="hidden"></div>
+
+<div id="EndDiv" hidden="hidden">
+	<div>
+	<h1>Wheels<span>BUY / SELL / RENT</span></h1>
+	</div>
+	<h2>Thank you for visiting!</h2>
+</div>
+
+<script>
+
+var parseXML;
+
+if (typeof window.DOMParser != "undefined") {
+parseXML = function(xmlStr) {
+return ( new window.DOMParser() ).parseFromString(xmlStr, "text/xml");
+};
+
+} else if (typeof window.ActiveXObject != "undefined" &&
+new window.ActiveXObject("Microsoft.XMLDOM")) {
+parseXML = function(xmlStr) {
+var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+xmlDoc.async = "false";
+xmlDoc.loadXML(xmlStr);
+return xmlDoc;
+};
+
+} else {
+throw new Error("No XML parser found");
+}
+
+
+function ShowCars(){
+	var myHeaders = new Headers();
+	myHeaders.append("SOAPaction", "\"\"");
+	myHeaders.append("Content-Type", "application/json");
+
+	var raw = `
+		<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	    <Body>
+	        <showcars xmlns="http://main"/>
+	    </Body>
+	</Envelope>
+	`;
+	
+	var requestOptions = {
+	  method: 'POST',
+	  headers: myHeaders,
+	  body: raw,
+	  redirect: 'follow'
+	};
+
+	fetch("http://localhost:8080/Wheels-project/services/ShowCars", requestOptions)
+	  .then(response => response.text())
+	  .then((result) => {
+
+	      // Parse the XML response using the provided parseXML function
+	      var xmlDoc = parseXML(result);
+
+	      // Extract car data
+	      var carNodes = xmlDoc.querySelectorAll("showcarsReturn");
+	      var carsData = Array.from(carNodes).map((carNode) => ({
+	        make: carNode.querySelector("Make").textContent,
+	        model: carNode.querySelector("Model").textContent,
+	        year: carNode.querySelector("Year").textContent,
+	        mileage: carNode.querySelector("Mileage").textContent,
+	        price: carNode.querySelector("Price").textContent,
+	        status: carNode.querySelector("status").textContent,
+	      }));
+			
+	      // Display the data on the homepage
+	      showCarsOnHomepage(carsData);
+	    })
+	    .catch((error) => console.log("error", error));
+}
+
+function showCarsOnHomepage(carsData) {	
+	  var carContainer = document.getElementById("ShowCars"); // Assuming you have an element with id 'ShowCars' on your homepage
+
+	  carContainer.innerHTML = '';
+	  carsData.forEach((car) => {
+		  
+	    var carDiv = document.createElement("div");
+	    carDiv.className = "Car_Container";
+	    carDiv.innerHTML = `
+	    <div class="Car-Div">
+	      <h2>${car.make}</h2>
+	      <h3>${car.model}</h3>
+	      <label>${car.year}</label>
+	      <br/>
+	      <label>${car.status}</label>
+	      <br/>
+	      <label>${car.price} Rs</label>
+	      </br>
+	      <button class="b1">Buy</button>
+	      <button class="b2">Rent</button>
+	      </div>
+	      <!-- Add other properties as needed -->
+	    `;    
+	    carContainer.appendChild(carDiv);
+	  });
+
+	  document.getElementById("DOMContentLoaded", function () {
+	  	  ShowCars();
+	  });
+}
+
+
+	
+function Open(){
+	document.getElementById('Start').remove();
+	document.getElementById('Login').removeAttribute('hidden');
+}
+
+function Open2(){
+	document.getElementById('Start').remove();
+	document.getElementById('Signup').removeAttribute('hidden');
+}
+
+function Open3(){
+	document.getElementById('ShowCars').remove();
+	document.getElementById('HomePage').remove();
+	document.getElementById('Search').removeAttribute('hidden');
+}
+
+function Open4(){
+	document.getElementById('ShowCars').remove();
+	document.getElementById('HomePage').remove();
+	document.getElementById('Sell').removeAttribute('hidden');
+}
+
+function SignUp(){
+	name = document.getElementById('name').value;
+	email = document.getElementById('Email').value;
+	password = document.getElementById('Password').value;
+
+	var myHeaders = new Headers();
+	myHeaders.append("SOAPAction", "\"\"");
+	myHeaders.append("Content-Type", "application/json");
+	if(email !='' && password !='' && name !=''){
+	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+		<Body>
+			<get_info_for_signup xmlns="http://main">
+				<name>${name}</name>
+				<email>${email}</email>
+				<password>${password}</password>
+			</get_info_for_signup>
+		</Body>
+	</Envelope>`;
+	var requestOptions = {
+	method: 'POST',
+	headers: myHeaders,
+	body: raw,
+	redirect: 'follow'
+	};
+
+	fetch("http://localhost:8080/Wheels-project/services/Signup", requestOptions)
+	.then(response => response.text())
+	.then(result => {
+		document.getElementById('Signup').remove();
+		document.getElementById('Login').removeAttribute('hidden');
+	})
+	.catch(error => console.log('error', error));	
+	}
+	else{
+		alert('Enter Data');	
+	}
+}
+
+function SearchCar(){
+	//document.getElementById('ShowCars').remove();
+	//document.getElementById('ShowCars').classList.add('hidden');
+	//var ShowCars = document.getElementById('ShowCars');
+	//ShowCars.style.display = 'none';
+	
+	make = document.getElementById('Make').value;
+
+	var myHeaders = new Headers();
+	myHeaders.append("SOAPAction", "\"\"");
+	myHeaders.append("Content-Type", "application/json");
+
+	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+		<Body>
+			<searchCar xmlns="http://main">
+				<make>${make}</make>
+			</searchCar>
+		</Body>
+	</Envelope>`;
+	var requestOptions = {
+	method: 'POST',
+	headers: myHeaders,
+	body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/Wheels-project/services/Search", requestOptions)
+  .then(response => response.text())
+  .then((result) => {
+      // Parse the XML response using the provided parseXML function
+      var xmlDoc = parseXML(result);
+
+      // Extract car data
+      var searchNodes = xmlDoc.querySelectorAll("searchCarReturn");
+      var searchedData = Array.from(searchNodes).map((searchNode) => ({
+    	carId:searchNode.querySelector("carId").textContent,
+    	make: searchNode.querySelector("Make").textContent,
+        model: searchNode.querySelector("Model").textContent,
+        year: searchNode.querySelector("Year").textContent,
+        mileage: searchNode.querySelector("Mileage").textContent,
+        price: searchNode.querySelector("Price").textContent,
+        status: searchNode.querySelector("status").textContent,
+      }));
+      
+      showCarsOnSearchpage(searchedData);
+    })
+    .catch((error) => console.log("error", error));
+}
+
+function showCarsOnSearchpage(carsData) {
+	
+	  document.getElementById('SearchedCars').removeAttribute('hidden');
+	  var carContainer = document.getElementById('SearchedCars'); // Assuming you have an element with id 'ShowCars' on your homepage
+	  carContainer.innerHTML = '';
+	  carsData.forEach((car) => {
+		var carId = car.carId;
+	    var carDiv = document.createElement("div");
+	    carDiv.className = "Car_Container";
+	    carDiv.innerHTML = `
+	    <div class="Car-Div">
+	      <h2>${car.make}</h2>
+	      <h3>${car.model}</h3>
+	      <br/>
+	      <label>${car.status}</label>
+	      <br/>
+	      <label>${car.year}</label>
+	      <br/>
+	      <label>${car.price}</label>
+	      <br/>
+	      <button class="b1" onclick="Buy(${carId})">Buy</button>
+	      <button class="b2" onclick="Rent(${carId})">Rent</button>
+	      </div>
+	      <!-- Add other properties as needed -->
+	    `;
+	    carContainer.appendChild(carDiv);
+	  });
+
+	  document.getElementById("DOMContentLoaded", function () {
+	  	  SearchCar();
+	  });
+}
+
+function Buy(carID) {
+	  console.log(carID);
+
+	  // Validate carID to ensure it's a number
+	  if (isNaN(carID)) {
+	    console.error('Error: Invalid car ID');
+	    return;
+	  }
+
+	  var user = parseInt(localStorage.getItem('ID'));
+		console.log(user);
+	  // Check if the parsed ID is a valid number
+	  if (isNaN(user)) {
+	    console.error('Error: Invalid user ID');
+	    return;
+	  }
+
+	  var myHeaders = new Headers();
+	  myHeaders.append("SOAPaction", "\"\"");
+	  myHeaders.append("Content-Type", "application/json");
+
+	  var raw = `
+	    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	        <Body>
+	            <setBuyerData xmlns="http://main">
+	                <userid>${user}</userid>
+	                <carid>${carID}</carid>
+	                <Type>Buy</Type>
+	            </setBuyerData>
+	        </Body>
+	    </Envelope>
+	  `;
+
+	  var requestOptions = {
+	    method: 'POST',
+	    headers: myHeaders,
+	    body: raw,
+	    redirect: 'follow'
+	  };
+
+	  fetch("http://localhost:8080/Wheels-project/services/Buy", requestOptions)
+	    .then(response => response.text())
+	    .then(result => {
+	    	document.getElementById('EndDiv').removeAttribute('hidden');
+	    })
+	    .catch(error => console.log('error', error));
+}
+
+function Rent(carID){
+	console.log(carID);
+
+	  // Validate carID to ensure it's a number
+	  if (isNaN(carID)) {
+	    console.error('Error: Invalid car ID');
+	    return;
+	  }
+
+	  var user = parseInt(localStorage.getItem('ID'));
+		console.log(user);
+	  // Check if the parsed ID is a valid number
+	  if (isNaN(user)) {
+	    console.error('Error: Invalid user ID');
+	    return;
+	  }
+	  
+	  var myHeaders = new Headers();
+	  myHeaders.append("SOAPaction", "\"\"");
+	  myHeaders.append("Content-Type", "application/json");
+
+	  var raw = `
+	    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	        <Body>
+	            <setBuyerData xmlns="http://main">
+	                <userid>${user}</userid>
+	                <carid>${carID}</carid>
+	                <Type>Rented</Type>
+	            </setBuyerData>
+	        </Body>
+	    </Envelope>
+	  `;
+
+	  var requestOptions = {
+	    method: 'POST',
+	    headers: myHeaders,
+	    body: raw,
+	    redirect: 'follow'
+	  };
+
+	  fetch("http://localhost:8080/Wheels-project/services/Buy", requestOptions)
+	    .then(response => response.text())
+	    .then(result => {
+	    	document.getElementById('EndDiv').removeAttribute('hidden');
+	    })
+	    .catch(error => console.log('error', error));
+}
+</script>
+</body>
+</html>
