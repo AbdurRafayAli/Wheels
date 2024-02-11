@@ -7,13 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-<<<<<<< HEAD
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
-=======
   <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
->>>>>>> merge-branch
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -61,19 +56,11 @@
    <ns1:parameter qname="ns2:price" type="xsd:float"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="sellCar"/>
-<<<<<<< HEAD
-  <ns1:parameter name="wsdlPortType" value="Sell"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://main"/>
-  <ns1:parameter name="wsdlServicePort" value="Sell"/>
-  <ns1:parameter name="className" value="main.Sell"/>
-=======
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Sell"/>
   <ns1:parameter name="className" value="main.Sell"/>
   <ns1:parameter name="wsdlServicePort" value="Sell"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
->>>>>>> merge-branch
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="SellService"/>
  </ns1:service>
@@ -84,19 +71,11 @@
    <ns1:parameter qname="ns3:Type" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="setBuyerData"/>
-<<<<<<< HEAD
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlPortType" value="Buy"/>
-  <ns1:parameter name="className" value="main.Buy"/>
-  <ns1:parameter name="wsdlServicePort" value="Buy"/>
-  <ns1:parameter name="schemaQualified" value="http://main"/>
-=======
   <ns1:parameter name="wsdlPortType" value="Buy"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
   <ns1:parameter name="wsdlServicePort" value="Buy"/>
   <ns1:parameter name="className" value="main.Buy"/>
->>>>>>> merge-branch
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="BuyService"/>
  </ns1:service>
@@ -105,48 +84,37 @@
    <ns1:parameter qname="ns4:make" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="searchCar"/>
-  <ns1:parameter name="wsdlPortType" value="Search"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://main"/>
-  <ns1:parameter name="wsdlServicePort" value="Search"/>
+  <ns1:parameter name="wsdlPortType" value="Search"/>
   <ns1:parameter name="className" value="main.Search"/>
+  <ns1:parameter name="wsdlServicePort" value="Search"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="SearchService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:Car" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.Car" xmlns:ns5="http://main"/>
  </ns1:service>
-<<<<<<< HEAD
  <ns1:service name="Buyer" provider="java:RPC" style="wrapped" use="literal">
   <ns1:operation name="toString" qname="ns6:toString" returnQName="ns6:toStringReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   <ns1:parameter name="allowedMethods" value="toString"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Buyer"/>
-  <ns1:parameter name="className" value="main.Buyer"/>
-  <ns1:parameter name="wsdlServicePort" value="Buyer"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Buyer"/>
+  <ns1:parameter name="className" value="main.Buyer"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="BuyerService"/>
  </ns1:service>
-=======
->>>>>>> merge-branch
  <ns1:service name="Login" provider="java:RPC" style="wrapped" use="literal">
   <ns1:operation name="login_details" qname="ns7:login_details" returnQName="ns7:login_detailsReturn" returnType="ns7:Details" soapAction="" xmlns:ns7="http://main">
    <ns1:parameter qname="ns7:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
    <ns1:parameter qname="ns7:pass" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="login_details"/>
-<<<<<<< HEAD
-  <ns1:parameter name="wsdlPortType" value="Login"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://main"/>
-  <ns1:parameter name="wsdlServicePort" value="Login"/>
-  <ns1:parameter name="className" value="main.Login"/>
-=======
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Login"/>
   <ns1:parameter name="className" value="main.Login"/>
   <ns1:parameter name="wsdlServicePort" value="Login"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
->>>>>>> merge-branch
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Details" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.Details" xmlns:ns8="http://main"/>
